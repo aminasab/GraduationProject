@@ -13,33 +13,67 @@ namespace graduationProject
 {
     internal class HandleUpdate
     {
-        public static Message? message;
+        /// <summary>
+        /// Получение обновлений от пользователя.
+        /// </summary>
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
-            message = update.Message;
-            if (update.Type == UpdateType.Message && update?.Message?.Text != null)
+            try
             {
-                await HandleMessage(botClient, update.Message, update, cancellationToken);
-                return;
+                if (update.Type == UpdateType.Message)
+                {
+                    await HandleMessage(
+                    botClient, update.Message!);
+                    return;
+                }
+                if (update.Type == UpdateType.CallbackQuery)
+                {
+                    await HandleButtonAsync(update.CallbackQuery!);
+                }
             }
-            if (update.Type == UpdateType.CallbackQuery)
+            catch(Exception ex)
             {
-                await Worker.HandleCallbackQuery(botClient, update.CallbackQuery);
-                return;
+                Console.WriteLine(ex.Message);
             }
         }
 
-        public static async Task HandleMessage(ITelegramBotClient botClient, Message message, Update update, CancellationToken cancellationToken)
+        /// <summary>
+        /// Обработка сообщений с текстом.
+        /// </summary>
+        public static async Task HandleMessage(ITelegramBotClient botClient, Message message )
         {
             if (message?.Text?.ToLower() == "/start" || message?.Text?.ToLower() == "начать")
             {
-                await Worker.PrintMainMenuAsync(botClient);
+                await Worker.PrintMainMenuAsync(message);
             }
             else
             {
-                Message sentMessage = await botClient.SendTextMessageAsync(
-                 message.Chat.Id,
-                 text: "Введите- начать, чтобы продолжить пользование чат-ботом.");
+                await botClient.SendTextMessageAsync(
+                    message!.Chat.Id, 
+                    "Введите- начать, чтобы продолжить пользование чат-ботом.");
+            }
+        }
+
+        /// <summary>
+        /// Получение ответа от Inline-кнопок.
+        /// </summary>
+        public static async Task HandleButtonAsync(CallbackQuery callbackQuery)
+        {
+            if (callbackQuery.Data=="callBackOfTechnologist")
+                {
+                    await Technologist.PrintMenuOfTechnologistAsync(callbackQuery);
+                }
+            if (callbackQuery.Data=="callBackOfSeamstress")
+            {
+                await Seamstress.PrintMenuOfSeamstressAsync(callbackQuery);
+            }
+            if (callbackQuery.Data == "callBackOfStudent")
+            {
+                await Student.PrintMenuOfStudentAsync(callbackQuery);
+            }
+            if (callbackQuery.Data== "callBackOfSeller")
+            {
+                await Seller.PrintMenuForSeller(callbackQuery);
             }
         }
     }

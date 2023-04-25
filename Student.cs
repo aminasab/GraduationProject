@@ -9,7 +9,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести на экран сообщение и инлайн-кнопки для Практиканта/Стажера/Студента.
         /// </summary>
-        public static async Task PrintMenuOfStudentAsync(ITelegramBotClient botClient)
+        public static async Task PrintMenuOfStudentAsync(CallbackQuery callbackQuery)
         {
             var replyKeyboardOfStudent = new InlineKeyboardMarkup(new[]
                 {
@@ -20,11 +20,10 @@ namespace graduationProject
                 },
                 new []{InlineKeyboardButton.WithCallbackData(text:"Заправка оборудования", callbackData: "refuelingEquipment") }
             });
-            Message sentMessage = await botClient.SendTextMessageAsync(
-                 HandleUpdate.message.Chat.Id,
-                 text: "Выберите опцию",
-                 replyMarkup: replyKeyboardOfStudent);
-            return;
+            await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id, 
+                "Выберите опцию", 
+                replyMarkup: replyKeyboardOfStudent);
         }
     }
 }

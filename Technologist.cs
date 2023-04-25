@@ -14,12 +14,12 @@ namespace graduationProject
         /// <summary>
         /// Вывести на экран сообщение и инлайн-кнопки для Технолога.
         /// </summary>
-        public static async Task PrintMenuOfTechnologistAsync(ITelegramBotClient botClient)
+        public static async Task PrintMenuOfTechnologistAsync(CallbackQuery callbackQuery)
         {
             var keyBoardMarkupOfTechnologist = new InlineKeyboardMarkup(new[]
             {
                 new[]{
-                            InlineKeyboardButton.WithCallbackData(text:"Реорганизация предприятия",callbackData:"reorganization")},
+                            InlineKeyboardButton.WithCallbackData(text:"Должностная инструкция",callbackData:"jobDescription")},
                 new[]{
                             InlineKeyboardButton.WithCallbackData(text:"Оптимизация производства",callbackData:"optimization")},
                 new []{
@@ -27,11 +27,24 @@ namespace graduationProject
                 new[]{
                             InlineKeyboardButton.WithCallbackData(text:"Вернуться в главное меню", callbackData:"exitToMainMenu")}
             });
-            Message sentMessage = await botClient.SendTextMessageAsync(
-                HandleUpdate.message.Chat.Id,
-                text: "Выберите опцию",
+            await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                "Выберите опцию",
                 replyMarkup: keyBoardMarkupOfTechnologist);
-            return;
+        }
+
+        public static async Task PrintMenuOfJobDescriptionOfTechnologist(CallbackQuery callbackQuery)
+        {
+            var keyBoardMarkup = new InlineKeyboardMarkup(new[]
+            {
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Должностные обязанности", callbackData: "responsibilitiesOfTechnologist") },
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Права технолога", callbackData:"rightsOfTechnologist")},
+                new []{InlineKeyboardButton.WithCallbackData(text:"Ответственность технолога", callbackData: "responsibilityOfTechnologist") }
+            });
+            await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                "Выберите опцию",
+                replyMarkup: keyBoardMarkup);
         }
     }
 }

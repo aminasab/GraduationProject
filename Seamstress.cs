@@ -9,7 +9,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести на экран сообщение и инлайн-кнопки для Швеи.
         /// </summary>
-        public static async Task PrintMenuOfSeamstressAsync(ITelegramBotClient botClient)
+        public static async Task PrintMenuOfSeamstressAsync(CallbackQuery callbackQuery)
         {
             var replyKeyboardOfSeamstress = new InlineKeyboardMarkup(new[]
                 {
@@ -19,11 +19,10 @@ namespace graduationProject
                 new []{InlineKeyboardButton.WithCallbackData( text:"Выбрать пошив изделия",callbackData: "tailoring")
                 }
             });
-            Message sentMessage = await botClient.SendTextMessageAsync(
-                 HandleUpdate.message.Chat.Id,
-                 text: "Выберите опцию",
-                 replyMarkup: replyKeyboardOfSeamstress);
-            return;
+            await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                "Выберите опцию",
+                replyMarkup:replyKeyboardOfSeamstress);
         }
     }
 }

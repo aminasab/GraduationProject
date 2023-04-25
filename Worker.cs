@@ -1,15 +1,18 @@
 ﻿using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types;
 using Telegram.Bot;
+using Telegram.Bot.Args;
+using Telegram.Bot.Exceptions;
+using Telegram.Bot.Types.Enums;
+using System.Threading.Tasks;
 
 namespace graduationProject
 {
     internal class Worker
     {
-        public int UserId { get; set; }
-
-        public static async Task PrintMainMenuAsync(ITelegramBotClient botClient)
-        { 
+      
+        public static async Task PrintMainMenuAsync(Message message)
+        {
             var replyKeyboardMarkup = new InlineKeyboardMarkup(new[]
             {
                 new[]{
@@ -17,30 +20,14 @@ namespace graduationProject
                 },
                 new []{InlineKeyboardButton.WithCallbackData( text:"Швея",callbackData:"callBackOfSeamstress" ) },
                 new[]{
-                InlineKeyboardButton.WithCallbackData(text:"Стажер/студент/практикант", callbackData:"callBackOfStudent") }
+                InlineKeyboardButton.WithCallbackData(text:"Стажер/студент/практикант", callbackData:"callBackOfStudent") 
+                },
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Продавец-консультант", callbackData:"callBackOfSeller") }
             });
-            Message sentMessage = await botClient.SendTextMessageAsync(
-                 HandleUpdate.message.Chat.Id,
-                 text: "Выберите пользователя",
-                 replyMarkup: replyKeyboardMarkup);
-            return;
-        }
-
-        public static async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callbackQuery)
-        {
-            if (callbackQuery.Data.Equals("callBackOfTechnologist"))
-            {
-                await Technologist.PrintMenuOfTechnologistAsync(botClient);
-            }
-            if (callbackQuery.Data.Equals("callBackOfSeamstress"))
-            {
-                await Seamstress.PrintMenuOfSeamstressAsync(botClient);
-            }
-            if (callbackQuery.Data.Equals("callBackOfStudent"))
-            {
-                await Student.PrintMenuOfStudentAsync(botClient);
-            }
-            return;
+            await Program.bot.SendTextMessageAsync(
+                message.Chat.Id, 
+                "Выберите пользователя", 
+                replyMarkup:replyKeyboardMarkup);
         }
     }
 }
