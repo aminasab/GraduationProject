@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telegram.Bot.Types.ReplyMarkups;
+﻿using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types;
 using Telegram.Bot;
 
@@ -18,14 +13,9 @@ namespace graduationProject
         {
             var keyBoardMarkupOfTechnologist = new InlineKeyboardMarkup(new[]
             {
-                new[]{
-                            InlineKeyboardButton.WithCallbackData(text:"Должностная инструкция",callbackData:"jobDescription")},
-                new[]{
-                            InlineKeyboardButton.WithCallbackData(text:"Оптимизация производства",callbackData:"optimization")},
-                new []{
-                            InlineKeyboardButton.WithCallbackData(text:"Управление персоналом",callbackData:"management")},
-                new[]{
-                            InlineKeyboardButton.WithCallbackData(text:"Вернуться в главное меню", callbackData:"exitToMainMenu")}
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Должностная инструкция",callbackData:"jobDescription")},
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Оптимизация производства",callbackData:"optimization")},
+                new []{InlineKeyboardButton.WithCallbackData(text:"Управление персоналом",callbackData:"management")},
             });
             await Program.bot.SendTextMessageAsync(
                 callbackQuery.Message!.Chat.Id,

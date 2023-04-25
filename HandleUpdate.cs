@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telegram.Bot.Types.Enums;
+﻿using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types;
 using Telegram.Bot;
-using System.Threading;
-using Microsoft.VisualBasic;
 
 namespace graduationProject
 {
@@ -31,7 +24,7 @@ namespace graduationProject
                     await HandleButtonAsync(update.CallbackQuery!);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -40,7 +33,7 @@ namespace graduationProject
         /// <summary>
         /// Обработка сообщений с текстом.
         /// </summary>
-        public static async Task HandleMessage(ITelegramBotClient botClient, Message message )
+        public static async Task HandleMessage(ITelegramBotClient botClient, Message message)
         {
             if (message?.Text?.ToLower() == "/start" || message?.Text?.ToLower() == "начать")
             {
@@ -49,7 +42,7 @@ namespace graduationProject
             else
             {
                 await botClient.SendTextMessageAsync(
-                    message!.Chat.Id, 
+                    message!.Chat.Id,
                     "Введите- начать, чтобы продолжить пользование чат-ботом.");
             }
         }
@@ -59,11 +52,11 @@ namespace graduationProject
         /// </summary>
         public static async Task HandleButtonAsync(CallbackQuery callbackQuery)
         {
-            if (callbackQuery.Data=="callBackOfTechnologist")
-                {
-                    await Technologist.PrintMenuOfTechnologistAsync(callbackQuery);
-                }
-            if (callbackQuery.Data=="callBackOfSeamstress")
+            if (callbackQuery.Data == "callBackOfTechnologist")
+            {
+                await Technologist.PrintMenuOfTechnologistAsync(callbackQuery);
+            }
+            if (callbackQuery.Data == "callBackOfSeamstress")
             {
                 await Seamstress.PrintMenuOfSeamstressAsync(callbackQuery);
             }
@@ -71,7 +64,7 @@ namespace graduationProject
             {
                 await Student.PrintMenuOfStudentAsync(callbackQuery);
             }
-            if (callbackQuery.Data== "callBackOfSeller")
+            if (callbackQuery.Data == "callBackOfSeller")
             {
                 await Seller.PrintMenuForSeller(callbackQuery);
             }

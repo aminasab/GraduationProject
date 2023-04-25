@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telegram.Bot;
+﻿using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
@@ -11,6 +6,9 @@ namespace graduationProject
 {
     internal class Seller
     {
+        /// <summary>
+        /// Вывести меню для продавца-консультанта.
+        /// </summary>
         public static async Task PrintMenuForSeller(CallbackQuery callbackQuery)
         {
             var keyBoardMarkupOfSeller = new InlineKeyboardMarkup(new[]

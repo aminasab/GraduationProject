@@ -1,16 +1,14 @@
 ﻿using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types;
 using Telegram.Bot;
-using Telegram.Bot.Args;
-using Telegram.Bot.Exceptions;
-using Telegram.Bot.Types.Enums;
-using System.Threading.Tasks;
 
 namespace graduationProject
 {
     internal class Worker
     {
-      
+      /// <summary>
+      /// Вывод общего первоначального меню.
+      /// </summary>
         public static async Task PrintMainMenuAsync(Message message)
         {
             var replyKeyboardMarkup = new InlineKeyboardMarkup(new[]
