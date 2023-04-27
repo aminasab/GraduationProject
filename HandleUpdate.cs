@@ -52,6 +52,7 @@ namespace graduationProject
         /// </summary>
         public static async Task HandleButtonAsync(CallbackQuery callbackQuery)
         {
+            //Обработка вызовов из главного меню.
             if (callbackQuery.Data == "callBackOfTechnologist")
             {
                 await Technologist.PrintMenuOfTechnologistAsync(callbackQuery);
@@ -67,6 +68,71 @@ namespace graduationProject
             if (callbackQuery.Data == "callBackOfSeller")
             {
                 await Seller.PrintMenuForSeller(callbackQuery);
+            }
+            // Обработка вызовов выбора методов обработки одежды.
+            if (callbackQuery.Data== "sundressForGirl")
+            {
+
+            }
+            if (callbackQuery.Data== "dressForGirl")
+            {
+
+            }
+            if (callbackQuery.Data== "shirtForEcologist")
+            {
+
+            }
+            // Обработка вызовов выбора меню для продавца.
+            if (callbackQuery.Data== "responsibilitiesOfSeller")
+            {
+
+            }
+            if (callbackQuery.Data== "rightsOfSeller")
+            {
+
+            }
+            if(callbackQuery.Data== "responsibilityOfSeller")
+            {
+
+            }
+            // Обработка вызовов выбора меню для технолога.
+            if(callbackQuery.Data== "jobDescription")
+            {
+
+            }
+            if (callbackQuery.Data== "optimization")
+            {
+
+            }
+            if (callbackQuery.Data== "management")
+            {
+
+            }
+            // Обработка нажатия кнопки "Должностная инструкция" технолога.
+            if (callbackQuery.Data== "responsibilitiesOfTechnologist")
+            {
+
+            }
+            if(callbackQuery.Data== "rightsOfTechnologist")
+            {
+
+            }
+            if(callbackQuery.Data== "responsibilityOfTechnologist")
+            {
+
+            }
+            // Обработка вызова нажатия кнопки Студент/Швея из главного меню.
+            if (callbackQuery.Data== "threadsAndNeedles")
+            {
+
+            }
+            if(callbackQuery.Data== "tailoring")
+            {
+
+            }
+            if (callbackQuery.Data== "refuelingEquipment")
+            {
+
             }
         }
     }

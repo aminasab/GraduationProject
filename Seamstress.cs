@@ -14,7 +14,7 @@ namespace graduationProject
             var replyKeyboardOfSeamstress = new InlineKeyboardMarkup(new[]
                 {
                 new[]{
-                InlineKeyboardButton.WithCallbackData( text:"Подбор ниток и игл", callbackData:"threadsAndNeedles" )
+                InlineKeyboardButton.WithCallbackData( text:"Подбор ниток и игл", callbackData:"threadsAndNeedles")
                 },
                 new []{InlineKeyboardButton.WithCallbackData( text:"Выбрать пошив изделия",callbackData: "tailoring")
                 }
