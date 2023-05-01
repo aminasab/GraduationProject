@@ -4,6 +4,7 @@ using Telegram.Bot;
 
 namespace graduationProject
 {
+    
     internal class Student
     {
         /// <summary>
@@ -16,14 +17,75 @@ namespace graduationProject
                 new[]{
                 InlineKeyboardButton.WithCallbackData( text:"Подбор ниток и игл", callbackData:"threadsAndNeedles")
                 },
-                new []{InlineKeyboardButton.WithCallbackData( text:"Выбрать пошив изделия",callbackData: "tailoring")
+                new []{InlineKeyboardButton.WithCallbackData( text:"Выбрать пошив изделия",callbackData: "tailoringOfStudent")
                 },
-                new []{InlineKeyboardButton.WithCallbackData(text:"Заправка оборудования", callbackData: "refuelingEquipment") }
+                new []{InlineKeyboardButton.WithCallbackData(text:"Заправка оборудования", callbackData: "refuelingEquipment") },
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"exitToMainMenu")}
             });
             await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id, 
-                "Выберите опцию", 
+                callbackQuery.Message!.Chat.Id,
+                "Выберите опцию",
                 replyMarkup: replyKeyboardOfStudent);
+        }
+
+        /// <summary>
+        /// Вывод инлайн-кнопок для выбора изделий для студента. 
+        /// </summary>
+        public static async Task PrintMenuOfClothesOfStudentAsync(CallbackQuery callbackQuery)
+        {
+            var replyKeyBoardOfClothes = new InlineKeyboardMarkup(new[]
+            {
+                new []{InlineKeyboardButton.WithCallbackData(text:"Сарафан школьный для девочки", callbackData:"sundressForGirl")},
+                new []{InlineKeyboardButton.WithCallbackData(text:"Платье школьное для девочки", callbackData:"dressForGirl")},
+                new []{InlineKeyboardButton.WithCallbackData(text:"Рубашка для эколога", callbackData:"shirtForEcologist")},
+                new []{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"backToMenuOfStudent")}
+            });
+            await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                "Выбирите изделие",
+                replyMarkup: replyKeyBoardOfClothes);
+        }
+
+        /// <summary>
+        /// Вывести меню кнопок для выбора оборудования для заправки.
+        /// </summary>
+        public static async Task PrintMenuOfEquipmentAsync(CallbackQuery callbackQuery)
+        {
+            var replyKeyboardOfStudent = new InlineKeyboardMarkup(new[]
+                {
+                new[]{
+                InlineKeyboardButton.WithCallbackData( text:"Промышленная прямострочная машина", callbackData:"refuelingOfMachine")
+                },
+                new []{InlineKeyboardButton.WithCallbackData( text:"Четырехниточный оверлок",callbackData: "refuelingOverlock4")
+                },
+                new []{InlineKeyboardButton.WithCallbackData(text:"Пятиниточный оверлок", callbackData: "refuelingOverlock5") },
+                new []{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"backToMenuOfStudent")}
+            });
+            await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                "Выберите машину для заправки",
+                replyMarkup: replyKeyboardOfStudent);
+        }
+
+        public static async Task OutputVideoOfMachine(CallbackQuery callbackQuery)
+        {
+            await Program.bot.SendVideoAsync(callbackQuery.Message!.Chat.Id,
+                video: ""
+                );
+        }
+
+        public static async Task OutputVideoOfOverlock4(CallbackQuery callbackQuery)
+        {
+            await Program.bot.SendVideoAsync(callbackQuery.Message!.Chat.Id,
+                video: ""
+                );
+        }
+
+        public static async Task OutputVideoOfOverlock5(CallbackQuery callbackQuery)
+        {
+            await Program.bot.SendVideoAsync(callbackQuery.Message!.Chat.Id,
+                video: ""
+                );
         }
     }
 }
