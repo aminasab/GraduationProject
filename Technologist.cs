@@ -30,7 +30,7 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintInformationAboutOptimization(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new StreamReader("TextFiles\\optimization.txt");
+            using StreamReader reader = new ("TextFiles\\optimization.txt");
             string text = await reader.ReadToEndAsync();
             await Program.bot.SendTextMessageAsync(
             callbackQuery.Message!.Chat.Id,
@@ -42,7 +42,7 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintInformationaboutManagement(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new StreamReader("TextFiles\\personalMenegment.txt");
+            using StreamReader reader = new ("TextFiles\\personalMenegment.txt");
             string text = await reader.ReadToEndAsync();
             await Program.bot.SendTextMessageAsync(
             callbackQuery.Message!.Chat.Id,
@@ -72,7 +72,7 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintResponsibilitiesOfTechnologist(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new StreamReader("TextFiles\\responsibilitiesOfTechnologist.txt");
+            using StreamReader reader = new("TextFiles\\responsibilitiesOfTechnologist.txt");
             string text = await reader.ReadToEndAsync();
             await Program.bot.SendTextMessageAsync(
             callbackQuery.Message!.Chat.Id,
@@ -84,7 +84,7 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintRightsOfTechnologist(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new StreamReader("TextFiles\\rightsOfTechnologist.txt");
+            using StreamReader reader = new("TextFiles\\rightsOfTechnologist.txt");
             string text = await reader.ReadToEndAsync();
             await Program.bot.SendTextMessageAsync(
             callbackQuery.Message!.Chat.Id,
@@ -96,7 +96,7 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintResponsibilityOfTechnologist(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new StreamReader("TextFiles\\responsibilityOfTechnologist.txt");
+            using StreamReader reader = new("TextFiles\\responsibilityOfTechnologist.txt");
             string text = await reader.ReadToEndAsync();
             await Program.bot.SendTextMessageAsync(
             callbackQuery.Message!.Chat.Id,

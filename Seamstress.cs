@@ -21,7 +21,7 @@ namespace graduationProject
             await Program.bot.SendTextMessageAsync(
                 callbackQuery.Message!.Chat.Id,
                 "Выберите опцию",
-                replyMarkup:replyKeyboardOfSeamstress);
+                replyMarkup: replyKeyboardOfSeamstress);
         }
 
         /// <summary>

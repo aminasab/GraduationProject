@@ -4,7 +4,7 @@ using Telegram.Bot;
 
 namespace graduationProject
 {
-    
+
     internal class Student
     {
         /// <summary>
