@@ -5,8 +5,23 @@ using Telegram.Bot.Types.Enums;
 
 namespace graduationProject
 {
-    internal class Worker
+    internal class Workers
     {
+        public int Id { get; set; }
+        public string? UserName { get; set; }
+        public string? UserRole { get; set; }
+        public string? UserState { get; set; }
+        public int UserId { get; set; }
+
+        public Workers(int id,string name, string role, string state,int userId) 
+        {
+            Id = id;
+            UserName = name;
+            UserRole = role;
+            UserState = state;
+            UserId = userId;
+        }
+
         /// <summary>
         /// Вывод общего первоначального меню.
         /// </summary>
@@ -20,7 +35,8 @@ namespace graduationProject
                 new []{InlineKeyboardButton.WithCallbackData( text:"Швея",callbackData:"callBackOfSeamstress" ) },
                 new[]{
                 InlineKeyboardButton.WithCallbackData(text:"Стажер/студент/практикант", callbackData:"callBackOfStudent")},
-                new[]{InlineKeyboardButton.WithCallbackData(text:"Продавец-консультант", callbackData:"callBackOfSeller") }
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Продавец-консультант", callbackData:"callBackOfSeller") },
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Мастер-класс по ВТО", callbackData:"callBackOfMasterClass") }
             });
             await Program.bot.SendTextMessageAsync(
                 message.Chat.Id,

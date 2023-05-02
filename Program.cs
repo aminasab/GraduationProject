@@ -12,6 +12,7 @@ namespace graduationProject
         public static async Task Main(string[] args)
         {
             var me = await bot.GetMeAsync();
+            WorkersRepository workersRepository = new(ConstantsForConnectionToDB.ConnectionString);
             Console.WriteLine("Запущен бот " + bot.GetMeAsync().Result.FirstName);
             var cts = new CancellationTokenSource();
             var cancellationToken = cts.Token;

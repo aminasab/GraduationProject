@@ -37,7 +37,7 @@ namespace graduationProject
         {
             if (message?.Text?.ToLower() == "/start" || message?.Text?.ToLower() == "начать")
             {
-                await Worker.PrintMainMenuAsync(message);
+                await Workers.PrintMainMenuAsync(message);
             }
             else
             {
@@ -68,17 +68,17 @@ namespace graduationProject
                     await Seller.PrintMenuForSeller(callbackQuery);
                     break;
                 case "exitToMainMenu":
-                    await Worker.PrintMainMenuAsync(callbackQuery.Message!);
+                    await Workers.PrintMainMenuAsync(callbackQuery.Message!);
                     break;
                 // Обработка вызовов выбора методов обработки одежды.
                 case "sundressForGirl":
-                    await Worker.PrintInformationOfSundressAsync(callbackQuery);
+                    await Workers.PrintInformationOfSundressAsync(callbackQuery);
                     break;
                 case "dressForGirl":
-                    await Worker.PrintInformationOfDressAsync(callbackQuery);
+                    await Workers.PrintInformationOfDressAsync(callbackQuery);
                     break;
                 case "shirtForEcologist":
-                    await Worker.PrintInformationOfShirtAsync(callbackQuery);
+                    await Workers.PrintInformationOfShirtAsync(callbackQuery);
                     break;
                 // Обработка вызовов выбора меню для продавца.
                 case "responsibilitiesOfSeller":
@@ -115,7 +115,7 @@ namespace graduationProject
                     break;
                 // Обработка вызова нажатия кнопки Студент/Швея из главного меню.
                 case "threadsAndNeedles":
-                    await Worker.PrintInformationAboutThreadsAndNeedles(callbackQuery);
+                    await Workers.PrintInformationAboutThreadsAndNeedles(callbackQuery);
                     break;
                 case "tailoringOfSeamstress":
                     await Seamstress.PrintMenuOfClothesOfSeamstressAsync(callbackQuery);
