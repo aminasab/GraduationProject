@@ -20,8 +20,7 @@ namespace graduationProject
                 new []{InlineKeyboardButton.WithCallbackData( text:"Швея",callbackData:"callBackOfSeamstress" ) },
                 new[]{
                 InlineKeyboardButton.WithCallbackData(text:"Стажер/студент/практикант", callbackData:"callBackOfStudent")},
-                new[]{InlineKeyboardButton.WithCallbackData(text:"Продавец-консультант", callbackData:"callBackOfSeller") },
-                new[]{InlineKeyboardButton.WithCallbackData(text:"Мастер-класс по ВТО", callbackData:"callbackOfMasterClass")}
+                new[]{InlineKeyboardButton.WithCallbackData(text:"Продавец-консультант", callbackData:"callBackOfSeller") }
             });
             await Program.bot.SendTextMessageAsync(
                 message.Chat.Id,
@@ -114,11 +113,6 @@ namespace graduationProject
             await Program.bot.SendPhotoAsync(
                 callbackQuery.Message!.Chat.Id,
                 photo);
-        }
-
-        public static async Task OutputOfVideo(CallbackQuery callbackQuery)
-        {
-
         }
     }
 }

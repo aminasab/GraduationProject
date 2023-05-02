@@ -4,7 +4,6 @@ using Telegram.Bot;
 
 namespace graduationProject
 {
-
     internal class Student
     {
         /// <summary>
@@ -52,40 +51,18 @@ namespace graduationProject
         public static async Task PrintMenuOfEquipmentAsync(CallbackQuery callbackQuery)
         {
             var replyKeyboardOfStudent = new InlineKeyboardMarkup(new[]
-                {
+            {
                 new[]{
-                InlineKeyboardButton.WithCallbackData( text:"Промышленная прямострочная машина", callbackData:"refuelingOfMachine")
+                InlineKeyboardButton.WithUrl( text:"Промышленная прямострочная машина", url:"https://www.youtube.com/watch?v=Uud4xtSH0FQ&t=3s")
                 },
-                new []{InlineKeyboardButton.WithCallbackData( text:"Четырехниточный оверлок",callbackData: "refuelingOverlock4")
-                },
-                new []{InlineKeyboardButton.WithCallbackData(text:"Пятиниточный оверлок", callbackData: "refuelingOverlock5") },
+                new[]{InlineKeyboardButton.WithUrl(text:"Четырехниточный оверлок", url: "https://www.youtube.com/watch?v=WtFNixJLRXs") },
+                new []{InlineKeyboardButton.WithUrl(text:"Пятиниточный оверлок", url: "https://www.youtube.com/watch?v=DVlmZuupGDY") },
                 new []{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"backToMenuOfStudent")}
             });
             await Program.bot.SendTextMessageAsync(
                 callbackQuery.Message!.Chat.Id,
                 "Выберите машину для заправки",
                 replyMarkup: replyKeyboardOfStudent);
-        }
-
-        public static async Task OutputVideoOfMachine(CallbackQuery callbackQuery)
-        {
-            await Program.bot.SendVideoAsync(callbackQuery.Message!.Chat.Id,
-                video: ""
-                );
-        }
-
-        public static async Task OutputVideoOfOverlock4(CallbackQuery callbackQuery)
-        {
-            await Program.bot.SendVideoAsync(callbackQuery.Message!.Chat.Id,
-                video: ""
-                );
-        }
-
-        public static async Task OutputVideoOfOverlock5(CallbackQuery callbackQuery)
-        {
-            await Program.bot.SendVideoAsync(callbackQuery.Message!.Chat.Id,
-                video: ""
-                );
         }
     }
 }
