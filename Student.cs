@@ -11,8 +11,9 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintMenuOfStudentAsync(CallbackQuery callbackQuery)
         {
-            var replyKeyboardOfStudent = new InlineKeyboardMarkup(new[]
-                {
+            if ((callbackQuery.Data== "callBackOfStudent")||(callbackQuery.Data== "backToMenuOfStudent")) {
+                var replyKeyboardOfStudent = new InlineKeyboardMarkup(new[]
+                    {
                 new[]{
                 InlineKeyboardButton.WithCallbackData( text:"Подбор ниток и игл", callbackData:"threadsAndNeedles")
                 },
@@ -21,10 +22,11 @@ namespace graduationProject
                 new []{InlineKeyboardButton.WithCallbackData(text:"Заправка оборудования", callbackData: "refuelingEquipment") },
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"exitToMainMenu")}
             });
-            await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id,
-                "Выберите опцию",
-                replyMarkup: replyKeyboardOfStudent);
+                await Program.bot.SendTextMessageAsync(
+                    callbackQuery.Message!.Chat.Id,
+                    "Выберите опцию",
+                    replyMarkup: replyKeyboardOfStudent);
+            }
         }
 
         /// <summary>
@@ -32,17 +34,19 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintMenuOfClothesOfStudentAsync(CallbackQuery callbackQuery)
         {
-            var replyKeyBoardOfClothes = new InlineKeyboardMarkup(new[]
-            {
+            if (callbackQuery.Data == "tailoringOfStudent") {
+                var replyKeyBoardOfClothes = new InlineKeyboardMarkup(new[]
+                {
                 new []{InlineKeyboardButton.WithCallbackData(text:"Сарафан школьный для девочки", callbackData:"sundressForGirl")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Платье школьное для девочки", callbackData:"dressForGirl")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Рубашка для эколога", callbackData:"shirtForEcologist")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"backToMenuOfStudent")}
-            });
-            await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id,
-                "Выбирите изделие",
-                replyMarkup: replyKeyBoardOfClothes);
+                });
+                await Program.bot.SendTextMessageAsync(
+                    callbackQuery.Message!.Chat.Id,
+                    "Выбирите изделие",
+                    replyMarkup: replyKeyBoardOfClothes);
+            }
         }
 
         /// <summary>
@@ -50,19 +54,21 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintMenuOfEquipmentAsync(CallbackQuery callbackQuery)
         {
-            var replyKeyboardOfStudent = new InlineKeyboardMarkup(new[]
-            {
+            if (callbackQuery.Data== "refuelingEquipment") {
+                var replyKeyboardOfStudent = new InlineKeyboardMarkup(new[]
+                {
                 new[]{
                 InlineKeyboardButton.WithUrl( text:"Промышленная прямострочная машина", url:"https://www.youtube.com/watch?v=Uud4xtSH0FQ&t=3s")
                 },
                 new[]{InlineKeyboardButton.WithUrl(text:"Четырехниточный оверлок", url: "https://www.youtube.com/watch?v=WtFNixJLRXs") },
                 new []{InlineKeyboardButton.WithUrl(text:"Пятиниточный оверлок", url: "https://www.youtube.com/watch?v=DVlmZuupGDY") },
                 new []{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"backToMenuOfStudent")}
-            });
-            await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id,
-                "Выберите машину для заправки",
-                replyMarkup: replyKeyboardOfStudent);
+                });
+                await Program.bot.SendTextMessageAsync(
+                    callbackQuery.Message!.Chat.Id,
+                    "Выберите машину для заправки",
+                    replyMarkup: replyKeyboardOfStudent);
+            }
         }
     }
 }

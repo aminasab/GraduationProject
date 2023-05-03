@@ -11,17 +11,20 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintMenuOfSeamstressAsync(CallbackQuery callbackQuery)
         {
-            var replyKeyboardOfSeamstress = new InlineKeyboardMarkup(new[]
+            if ((callbackQuery.Data == "callBackOfSeamstress")||(callbackQuery.Data== "backToMenuOfSeamstress"))
             {
+                var replyKeyboardOfSeamstress = new InlineKeyboardMarkup(new[]
+                {
                 new[]{
                 InlineKeyboardButton.WithCallbackData( text:"Подбор ниток и игл", callbackData:"threadsAndNeedles")},
                 new []{InlineKeyboardButton.WithCallbackData( text:"Выбрать пошив изделия",callbackData: "tailoringOfSeamstress")},
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"exitToMainMenu")}
-            });
-            await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id,
-                "Выберите опцию",
-                replyMarkup: replyKeyboardOfSeamstress);
+                });
+                await Program.bot.SendTextMessageAsync(
+                    callbackQuery.Message!.Chat.Id,
+                    "Выберите опцию",
+                    replyMarkup: replyKeyboardOfSeamstress);
+            }
         }
 
         /// <summary>
@@ -29,17 +32,19 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintMenuOfClothesOfSeamstressAsync(CallbackQuery callbackQuery)
         {
-            var replyKeyBoardOfClothes = new InlineKeyboardMarkup(new[]
-            {
+            if (callbackQuery.Data == "tailoringOfSeamstress") {
+                var replyKeyBoardOfClothes = new InlineKeyboardMarkup(new[]
+                {
                 new []{InlineKeyboardButton.WithCallbackData(text:"Сарафан школьный для девочки", callbackData:"sundressForGirl")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Платье школьное для девочки", callbackData:"dressForGirl")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Рубашка для эколога", callbackData:"shirtForEcologist")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"backToMenuOfSeamstress")}
-            });
-            await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id,
-                "Выбирите изделие",
-                replyMarkup: replyKeyBoardOfClothes);
+                });
+                await Program.bot.SendTextMessageAsync(
+                    callbackQuery.Message!.Chat.Id,
+                    "Выбирите изделие",
+                    replyMarkup: replyKeyBoardOfClothes);
+            }
         }
     }
 }

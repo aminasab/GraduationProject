@@ -12,17 +12,20 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintMenuOfTechnologistAsync(CallbackQuery callbackQuery)
         {
-            var keyBoardMarkupOfTechnologist = new InlineKeyboardMarkup(new[]
+            if (callbackQuery.Data == "callBackOfTechnologist"|| callbackQuery.Data== "backToMenuOfTechnologist")
             {
+                var keyBoardMarkupOfTechnologist = new InlineKeyboardMarkup(new[]
+                {
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Должностная инструкция",callbackData:"jobDescription")},
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Оптимизация производства",callbackData:"optimization")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Управление персоналом",callbackData:"management")},
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"exitToMainMenu")}
-            });
-            await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id,
-                "Выберите опцию",
-                replyMarkup: keyBoardMarkupOfTechnologist);
+                });
+                await Program.bot.SendTextMessageAsync(
+                    callbackQuery.Message!.Chat.Id,
+                    "Выберите опцию",
+                    replyMarkup: keyBoardMarkupOfTechnologist);
+            }
         }
 
         /// <summary>
@@ -30,11 +33,13 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintInformationAboutOptimization(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new ("TextFiles\\optimization.txt");
-            string text = await reader.ReadToEndAsync();
-            await Program.bot.SendTextMessageAsync(
-            callbackQuery.Message!.Chat.Id,
-            text);
+            if (callbackQuery.Data == "optimization") {
+                using StreamReader reader = new("TextFiles\\optimization.txt");
+                string text = await reader.ReadToEndAsync();
+                await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                text);
+            }
         }
 
         /// <summary>
@@ -42,11 +47,13 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintInformationaboutManagement(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new ("TextFiles\\personalMenegment.txt");
-            string text = await reader.ReadToEndAsync();
-            await Program.bot.SendTextMessageAsync(
-            callbackQuery.Message!.Chat.Id,
-            text);
+            if (callbackQuery.Data == "management") {
+                using StreamReader reader = new("TextFiles\\personalMenegment.txt");
+                string text = await reader.ReadToEndAsync();
+                await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                text);
+            }
         }
 
         /// <summary>
@@ -54,17 +61,19 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintMenuOfJobDescriptionOfTechnologist(CallbackQuery callbackQuery)
         {
-            var keyBoardMarkup = new InlineKeyboardMarkup(new[]
-            {
+            if (callbackQuery.Data == "jobDescription") {
+                var keyBoardMarkup = new InlineKeyboardMarkup(new[]
+                {
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Должностные обязанности", callbackData: "responsibilitiesOfTechnologist") },
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Права технолога", callbackData:"rightsOfTechnologist")},
                 new []{InlineKeyboardButton.WithCallbackData(text:"Ответственность технолога", callbackData: "responsibilityOfTechnologist") },
                 new []{InlineKeyboardButton.WithCallbackData(text:"Вернуться назад", callbackData:"backToMenuOfTechnologist")}
-            });
-            await Program.bot.SendTextMessageAsync(
-                callbackQuery.Message!.Chat.Id,
-                "Выберите опцию",
-                replyMarkup: keyBoardMarkup);
+                });
+                await Program.bot.SendTextMessageAsync(
+                    callbackQuery.Message!.Chat.Id,
+                    "Выберите опцию",
+                    replyMarkup: keyBoardMarkup);
+            }
         }
 
         /// <summary>
@@ -72,11 +81,13 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintResponsibilitiesOfTechnologist(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new("TextFiles\\responsibilitiesOfTechnologist.txt");
-            string text = await reader.ReadToEndAsync();
-            await Program.bot.SendTextMessageAsync(
-            callbackQuery.Message!.Chat.Id,
-            text);
+            if (callbackQuery.Data == "responsibilitiesOfTechnologist") {
+                using StreamReader reader = new("TextFiles\\responsibilitiesOfTechnologist.txt");
+                string text = await reader.ReadToEndAsync();
+                await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                text);
+            }
         }
 
         /// <summary>
@@ -84,23 +95,27 @@ namespace graduationProject
         /// </summary>
         public static async Task PrintRightsOfTechnologist(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new("TextFiles\\rightsOfTechnologist.txt");
-            string text = await reader.ReadToEndAsync();
-            await Program.bot.SendTextMessageAsync(
-            callbackQuery.Message!.Chat.Id,
-            text);
+            if (callbackQuery.Data== "rightsOfTechnologist") {
+                using StreamReader reader = new("TextFiles\\rightsOfTechnologist.txt");
+                string text = await reader.ReadToEndAsync();
+                await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                text);
+            }
         }
-
+        
         /// <summary>
         /// Вывести информацию об ответственности технолога.
         /// </summary>
         public static async Task PrintResponsibilityOfTechnologist(CallbackQuery callbackQuery)
         {
-            using StreamReader reader = new("TextFiles\\responsibilityOfTechnologist.txt");
-            string text = await reader.ReadToEndAsync();
-            await Program.bot.SendTextMessageAsync(
-            callbackQuery.Message!.Chat.Id,
-            text);
+            if (callbackQuery.Data== "responsibilityOfTechnologist") {
+                using StreamReader reader = new("TextFiles\\responsibilityOfTechnologist.txt");
+                string text = await reader.ReadToEndAsync();
+                await Program.bot.SendTextMessageAsync(
+                callbackQuery.Message!.Chat.Id,
+                text);
+            }
         }
     }
 }
