@@ -5,7 +5,7 @@ using Telegram.Bot.Types.Enums;
 
 namespace graduationProject
 {
-    internal class Workers
+    public class Workers
     {
         public int Id { get; set; }
         public string? UserName { get; set; }
@@ -13,9 +13,8 @@ namespace graduationProject
         public string? UserState { get; set; }
         public int UserId { get; set; }
 
-        public Workers(int id,string name, string role, string state,int userId) 
+        public Workers(string name, string role, string state,int userId) 
         {
-            Id = id;
             UserName = name;
             UserRole = role;
             UserState = state;
