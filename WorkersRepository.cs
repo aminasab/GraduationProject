@@ -16,27 +16,33 @@ namespace graduationProject
         {
             _connectionString = connectionString;
         }
-
+     
         /// <summary>
         /// Заполнение коллекции строками из базы данных таблицы Workers.
         /// </summary>
-        public List <Workers> GetWorkers()
+        public List <Worker> GetWorkers()
         {
             using var con = new NpgsqlConnection(_connectionString);
             {
-                return con.Query<Workers>("SELECT * FROM Workers").ToList();
+                return con.Query<Worker>("SELECT * FROM Workers").ToList();
             }
         }
 
         /// <summary>
-        /// Вставка данных нового пользователя в базу данных.
+        /// Вставка данных пользователя в базу данных.
         /// </summary>
-        public async Task InsertData(Workers worker)
+        public async Task InsertData(Worker worker)
         {
-            await using var con = new NpgsqlConnection(_connectionString);
+            try
             {
-                var query = "INSERT INTO Workers (UserName, UserRole, UserState, UserId)";
-                con.Execute(query, worker);
+                await using var con = new NpgsqlConnection(_connectionString);
+                {
+                    var query = "INSERT INTO Workers (TelegramId, FirstName, LastName, UserName, CallBackOfInlineButton, DateCreated) VALUES (@TelegramId, @FirstName, @LastName, @UserName, @CallBackOfInlineButton, @DateCreated)";
+                    con.Execute(query,worker);
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         } 
 

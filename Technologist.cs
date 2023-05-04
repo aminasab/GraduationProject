@@ -31,7 +31,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести информацию об оптимизации производства для технолога.
         /// </summary>
-        public static async Task PrintInformationAboutOptimization(CallbackQuery callbackQuery)
+        public static async Task PrintInformationAboutOptimizationAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "optimization") {
                 using StreamReader reader = new("TextFiles\\optimization.txt");
@@ -45,7 +45,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести информацию об управлении персоналом для технолога.
         /// </summary>
-        public static async Task PrintInformationaboutManagement(CallbackQuery callbackQuery)
+        public static async Task PrintInformationaboutManagementAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "management") {
                 using StreamReader reader = new("TextFiles\\personalMenegment.txt");
@@ -59,7 +59,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести меню инлайн-кнопок Должностных инструкций для технолога.
         /// </summary>
-        public static async Task PrintMenuOfJobDescriptionOfTechnologist(CallbackQuery callbackQuery)
+        public static async Task PrintMenuOfJobDescriptionOfTechnologistAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "jobDescription") {
                 var keyBoardMarkup = new InlineKeyboardMarkup(new[]
@@ -79,7 +79,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести информацию о должностных обязанностях технолога.
         /// </summary>
-        public static async Task PrintResponsibilitiesOfTechnologist(CallbackQuery callbackQuery)
+        public static async Task PrintResponsibilitiesOfTechnologistAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "responsibilitiesOfTechnologist") {
                 using StreamReader reader = new("TextFiles\\responsibilitiesOfTechnologist.txt");
@@ -93,7 +93,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести информацию о правах технолога.
         /// </summary>
-        public static async Task PrintRightsOfTechnologist(CallbackQuery callbackQuery)
+        public static async Task PrintRightsOfTechnologistAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data== "rightsOfTechnologist") {
                 using StreamReader reader = new("TextFiles\\rightsOfTechnologist.txt");
@@ -107,7 +107,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести информацию об ответственности технолога.
         /// </summary>
-        public static async Task PrintResponsibilityOfTechnologist(CallbackQuery callbackQuery)
+        public static async Task PrintResponsibilityOfTechnologistAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data== "responsibilityOfTechnologist") {
                 using StreamReader reader = new("TextFiles\\responsibilityOfTechnologist.txt");

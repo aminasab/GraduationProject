@@ -5,20 +5,27 @@ using Telegram.Bot.Types.Enums;
 
 namespace graduationProject
 {
-    public class Workers
+    public class Worker
     {
         public int Id { get; set; }
+        public long TelegramId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string? UserName { get; set; }
-        public string? UserRole { get; set; }
-        public string? UserState { get; set; }
+        public string CallBackOfInlineButton { get; set; }
+        public DateTime DateCreated { get; set; }
+        
+      
         public int UserId { get; set; }
 
-        public Workers(string name, string role, string state,int userId) 
+        public Worker(long telegramId, string firstName, string lastName, string userName, string callBackOfInlineButton, DateTime time) 
         {
-            UserName = name;
-            UserRole = role;
-            UserState = state;
-            UserId = userId;
+            TelegramId= telegramId;
+            FirstName= firstName;
+            LastName= lastName;
+            UserName= userName;
+            CallBackOfInlineButton= callBackOfInlineButton;
+            DateCreated= time;
         }
 
         /// <summary>
@@ -32,7 +39,7 @@ namespace graduationProject
                 new []{InlineKeyboardButton.WithCallbackData( text:"Швея",callbackData:"callBackOfSeamstress" ) },
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Стажер/студент/практикант", callbackData:"callBackOfStudent")},
                 new[]{InlineKeyboardButton.WithCallbackData(text:"Продавец-консультант", callbackData:"callBackOfSeller") },
-                new[]{InlineKeyboardButton.WithCallbackData(text:"Мастер-класс по ВТО", callbackData:"callBackOfMasterClass") }
+                new[]{InlineKeyboardButton.WithUrl(text:"Мастер-класс по ВТО", url: "https://disk.yandex.ru/d/V99GLMbuyD9MjA") }
                 });
                 await Program.bot.SendTextMessageAsync(
                     message.Chat.Id,
@@ -125,7 +132,7 @@ namespace graduationProject
         /// <summary>
         /// Вывод изображения о выборе ниток и игл, для студента/швеи.
         /// </summary>
-        public static async Task PrintInformationAboutThreadsAndNeedles(CallbackQuery callbackQuery)
+        public static async Task PrintInformationAboutThreadsAndNeedlesAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "threadsAndNeedles") {
                 var photo = "https://disk.yandex.ru/i/zUwaNyj0GHuNRw";

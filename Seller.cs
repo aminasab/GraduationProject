@@ -9,7 +9,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести меню для продавца-консультанта.
         /// </summary>
-        public static async Task PrintMenuForSeller(CallbackQuery callbackQuery)
+        public static async Task PrintMenuForSellerAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "callBackOfSeller")
             {
@@ -30,7 +30,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести должностные обязанности продавца-консультанта.
         /// </summary>
-        public static async Task PrintInformationAboutresponsibilitiesOfSeller(CallbackQuery callbackQuery)
+        public static async Task PrintInformationAboutresponsibilitiesOfSellerAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "responsibilitiesOfSeller")
             {
@@ -45,7 +45,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести права продавца.
         /// </summary>
-        public static async Task PrintInformationAboutRightsOfSeller(CallbackQuery callbackQuery)
+        public static async Task PrintInformationAboutRightsOfSellerAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "rightsOfSeller")
             {
@@ -60,7 +60,7 @@ namespace graduationProject
         /// <summary>
         /// Вывести ответственность продавца-консультанта.
         /// </summary>
-        public static async Task PrintInformationAboutResponsibilityOfSeller(CallbackQuery callbackQuery)
+        public static async Task PrintInformationAboutResponsibilityOfSellerAsync(CallbackQuery callbackQuery)
         {
             if (callbackQuery.Data == "responsibilityOfSeller")
             {

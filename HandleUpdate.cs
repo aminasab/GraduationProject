@@ -11,16 +11,34 @@ namespace graduationProject
         /// </summary>
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
+            WorkersRepository workersRepository = new(ConstantsForConnectionToDB.ConnectionString);
             try
             {
                 if (update.Type == UpdateType.Message)
                 {
                     await HandleMessage(
                     botClient, update);
+                    Worker worker1 = new(
+                    update.Message.From.Id,
+                    update.Message.From.FirstName,
+                    update.Message.From.LastName!,
+                    update.Message.From.Username!,
+                    update.Message.Text!,
+                    DateTime.Now);
+                    await workersRepository.InsertData(worker1);
                     return;
                 }
                 if (update.Type == UpdateType.CallbackQuery)
                 {
+                    string callback = update.CallbackQuery.Data!;
+                    Worker worker2 = new(
+                    update.CallbackQuery.From!.Id,
+                    update.CallbackQuery.From.FirstName,
+                    update.CallbackQuery.From.LastName!,
+                    update.CallbackQuery.From.Username!,
+                    callback,
+                    DateTime.Now);
+                    await workersRepository.InsertData(worker2); 
                     await HandleButtonAsync(update.CallbackQuery!);
                 }
             }
@@ -38,7 +56,7 @@ namespace graduationProject
             if (update.Message?.Text?.ToLower() == "/start" || update.Message?.Text?.ToLower() == "начать")
             {
                 update.Message.Text = "MenuForTheStart";
-                await Workers.PrintMainMenuAsync(update.Message);
+                await Worker.PrintMainMenuAsync(update.Message);
             }
             else
             {
@@ -55,11 +73,11 @@ namespace graduationProject
         {
             if ((callbackQuery.Data == "MenuForTheStart") || (callbackQuery.Data == "exitToMainMenu"))
             {
-                await Workers.PrintMainMenuAsync(callbackQuery.Message!);
+                await Worker.PrintMainMenuAsync(callbackQuery.Message!);
             }
             else
             {
-                foreach (var del in DelegateOfCallBackInlineButton.callbackDelegates)
+                foreach (var del in DelegateOfCallBackInlineButton.CallbackDelegates)
                 {
                     await del(callbackQuery);
                 }

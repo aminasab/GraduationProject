@@ -3,29 +3,41 @@
 namespace graduationProject
 {
     public delegate Task CallbackQueryDelegate(CallbackQuery callbackQuery);
-    public static class DelegateOfCallBackInlineButton
+    public class DelegateOfCallBackInlineButton
     {
-        public static CallbackQueryDelegate[] callbackDelegates ={
+        static readonly CallbackQueryDelegate[] _callbackDelegates ={
+                // Технолог.
                 Technologist.PrintMenuOfTechnologistAsync,
+                Technologist.PrintMenuOfJobDescriptionOfTechnologistAsync,
+                Technologist.PrintInformationAboutOptimizationAsync,
+                Technologist.PrintInformationaboutManagementAsync,
+                Technologist.PrintResponsibilitiesOfTechnologistAsync,
+                Technologist.PrintRightsOfTechnologistAsync,
+                Technologist.PrintResponsibilityOfTechnologistAsync,
+                // Швея.
                 Seamstress.PrintMenuOfSeamstressAsync,
-                Student.PrintMenuOfStudentAsync,
-                Seller.PrintMenuForSeller,
-                Workers.PrintInformationOfSundressAsync,
-                Workers.PrintInformationOfDressAsync,
-                Workers.PrintInformationOfShirtAsync,
-                Seller.PrintInformationAboutresponsibilitiesOfSeller,
-                Seller.PrintInformationAboutRightsOfSeller,
-                Seller.PrintInformationAboutResponsibilityOfSeller,
-                Technologist.PrintMenuOfJobDescriptionOfTechnologist,
-                Technologist.PrintInformationAboutOptimization,
-                Technologist.PrintInformationaboutManagement,
-                Technologist.PrintResponsibilitiesOfTechnologist,
-                Technologist.PrintRightsOfTechnologist,
-                Technologist.PrintResponsibilityOfTechnologist,
-                Workers.PrintInformationAboutThreadsAndNeedles,
                 Seamstress.PrintMenuOfClothesOfSeamstressAsync,
+                // Продавец.
+                Seller.PrintMenuForSellerAsync,
+                Seller.PrintInformationAboutresponsibilitiesOfSellerAsync,
+                Seller.PrintInformationAboutRightsOfSellerAsync,
+                Seller.PrintInformationAboutResponsibilityOfSellerAsync,
+                Worker.PrintInformationAboutThreadsAndNeedlesAsync,
+                Worker.PrintInformationOfSundressAsync,
+                Worker.PrintInformationOfDressAsync,
+                Worker.PrintInformationOfShirtAsync,
+                // Студент.
+                Student.PrintMenuOfStudentAsync,
                 Student.PrintMenuOfClothesOfStudentAsync,
                 Student.PrintMenuOfEquipmentAsync
         };
+        public static CallbackQueryDelegate[] CallbackDelegates
+        {
+            get
+            {
+                return _callbackDelegates;
+            }
+        }
+
     }
 }
